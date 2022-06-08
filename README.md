@@ -1,2 +1,2 @@
 # Notas_Aulas_ESOF
-Notas e Exercícios do curso de Engenharia de Software
+Repositório criado com o objeticvo de abrigar notas e exercícios de aulas do curso de Engenharia de Software da [UNICESUMAR](https://www.unicesumar.edu.br/).
