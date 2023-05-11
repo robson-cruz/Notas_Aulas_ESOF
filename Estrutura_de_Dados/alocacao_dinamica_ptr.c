@@ -27,5 +27,9 @@ int main(void) {
   	Para evitar que isso ocorra, sempre deve ser inicializado o valor de um
    	ponteiro definido dinamicamente, o que poderia ser feito após malloc: *ptr = 10;
   	*/
+
+	// Liberação da memória alocada dinamicamente
+	free(ptr);
+	
 	return 0;
 }
