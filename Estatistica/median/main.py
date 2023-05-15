@@ -4,7 +4,7 @@ def median(x):
     middle = int(len(x)/2)
 
     if len(x) % 2 == 0:
-        m = x[middle-1]
+        m = (x[middle-1] + x[middle]) / 2
     else:
         m = x[middle]
 
