@@ -1,0 +1,8 @@
+Nome: Ana Izilda
+Idade: 4
+Peso: 8,00
+Sexo: F
+Nome: Maria Zilda
+Idade: 6
+Peso: 15,00
+Sexo: F
