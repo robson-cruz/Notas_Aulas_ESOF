@@ -63,3 +63,46 @@ void procedimento(No **lista, int num) {
     	free(no);
   	}
 }
+
+int main(void) {
+	No *lista = NULL;
+
+	// Inserir elementos na lista
+	int i;
+	for (i = 1; i <= 5; i++) {
+		No* novoNo = (No*)malloc(sizeof(No));
+		novoNo->valor = i;
+		novoNo->proximo = lista;
+		lista = novoNo;
+	}
+
+	printf("Lista original: ");
+	No *atual = lista;
+	while (atual != NULL) {
+		printf("%d ", atual->valor);
+		atual = atual->proximo;
+	}
+	printf("\n");
+
+	// Remover um valor da lista
+	int valorRemover = 3;
+	procedimento(&lista, valorRemover);
+
+	printf("Lista após remoção do valor %d: ", valorRemover);
+	atual = lista;
+	while (atual != NULL) {
+		printf("%d ", atual->valor);
+		atual = atual->proximo;
+	}
+	printf("\n");
+
+	// Liberar memória alocada
+	atual = lista;
+	while (atual != NULL) {
+		No *proximo = atual->proximo;
+		free(atual);
+		atual = proximo;
+	}
+	
+	return 0;
+}
