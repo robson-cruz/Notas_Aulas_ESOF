@@ -9,7 +9,7 @@ typedef struct no {
  	struct no *proximo;
 } No;
 
-/*** ->>>> Prototipação de funções <<<<- ***/
+/*** ->>>> PrototipaÃ§Ã£o de funÃ§Ãµes <<<<- ***/
 void inserir_inicio(No **lista, int num);
 void inserir_fim(No **lista, int num);
 void inserir_meio(No **lista, int num, int ant);
@@ -18,14 +18,14 @@ No* remover(No **lista, int num);
 No* buscar(No **lista, int num);
 void imprimir(No *no);
 
-/*** ->>>> Função Principal <<<<- ***/
+/*** ->>>> FunÃ§Ã£o Principal <<<<- ***/
 int main(void) {
 	int opcao, valor, anterior;
 	No *no, *lista = NULL;
 	setlocale(LC_ALL, "");
 	
 	do {
-		printf("\n0 - Sair\n1 - Inserir no início\n2 - Inserir no fim \
+		printf("\n0 - Sair\n1 - Inserir no inÃ­cio\n2 - Inserir no fim \
 	 	\n3 - Inserir no meio\n4 - Inserir ordenado\n5 - Remover \
 	  	\n6 - Imprimir\n7 - Buscar\n\n->>>");
 		scanf("%d", &opcao);
@@ -42,7 +42,7 @@ int main(void) {
 				inserir_fim(&lista, valor);
 				break;
 			case 3:
-				printf("Valor a ser inserido e valor de referência: ");
+				printf("Valor a ser inserido e valor de referÃªncia: ");
 				scanf("%d%d", &valor, &anterior);
 				inserir_meio(&lista, valor, anterior);
 				break;
@@ -59,7 +59,7 @@ int main(void) {
 					printf("Elemento: %d", no->valor);
 					free(no);
 				} else {
-					printf("Elemento não encontrado.\n");
+					printf("Elemento nÃ£o encontrado.\n");
 				}
 				break;
 			case 6:
@@ -73,19 +73,19 @@ int main(void) {
 					printf("Elemento: %d", no->valor);
 					free(no);
 				} else {
-					printf("Elemento não encontrado.\n");
+					printf("Elemento nÃ£o encontrado.\n");
 				}
 				break;
 			default:
 				if (opcao != 0) {
-					printf("Opção inválida.\n");
+					printf("OpÃ§Ã£o invÃ¡lida.\n");
 				}
 		}
 	} while (opcao != 0);
 	return 0;
 }
 
-/*** Implementação de funções <<<<- ***/
+/*** ImplementaÃ§Ã£o de funÃ§Ãµes <<<<- ***/
 void inserir_inicio(No **lista, int num) {
 	No *novo = (No*)malloc(sizeof(No));
 
@@ -94,7 +94,7 @@ void inserir_inicio(No **lista, int num) {
 		novo->proximo = *lista;
 		*lista = novo;
 	} else {
-		printf("Erro ao alocar memória.\n");
+		printf("Erro ao alocar memÃ³ria.\n");
 	}
 }
 
@@ -104,7 +104,7 @@ void inserir_fim(No **lista, int num) {
 	if (novo) {
 		novo->valor = num;
 		novo->proximo = NULL;
-	
+		// Testa se a lista estÃ¡ vazia
 		if (*lista == NULL) {
 			*lista = novo;
 		} else {
@@ -116,7 +116,7 @@ void inserir_fim(No **lista, int num) {
 		}
 		
 	} else {
-		printf("Erro ao alocar memória.\n"); 	
+		printf("Erro ao alocar memÃ³ria.\n"); 	
 	}
 }
 
@@ -125,7 +125,7 @@ void inserir_meio(No **lista, int num, int ant) {
 
 	if (novo) {
 		novo->valor = num;
-	
+		// Testa se a lista estÃ¡ vazia
 		if (*lista == NULL) {
 			novo->proximo = NULL;
 			*lista = novo;
@@ -138,7 +138,7 @@ void inserir_meio(No **lista, int num, int ant) {
 			aux->proximo = novo;
 		}
 	} else {
-		printf("Erro ao alocar memória.\n");
+		printf("Erro ao alocar memÃ³ria.\n");
 	}
 }
 
@@ -147,7 +147,7 @@ void inserir_ordenado(No **lista, int num) {
 
 	if (novo) {
 		novo->valor = num;
-	
+		// Testa se a lista estÃ¡ vazia
 		if (*lista == NULL) {
 			novo->proximo = NULL;
 			*lista = novo;
@@ -164,7 +164,7 @@ void inserir_ordenado(No **lista, int num) {
 			aux->proximo = novo;
 		}    
 	} else {
-		printf("Erro ao alocar memória.\n");
+		printf("Erro ao alocar memÃ³ria.\n");
 	}
 }
 
