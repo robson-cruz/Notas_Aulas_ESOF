@@ -151,7 +151,7 @@ void inserir_ordenado(No **lista, int num) {
 		if (*lista == NULL) {
 			novo->proximo = NULL;
 			*lista = novo;
-		// Testa se o novo nó é menor que o nó já presente na lista
+		// Testa se o novo nó é menor que o primeiro nó presente na lista
 		} else if (novo->valor < (*lista)->valor) {
 			novo->proximo = *lista;
 			*lista = novo;
