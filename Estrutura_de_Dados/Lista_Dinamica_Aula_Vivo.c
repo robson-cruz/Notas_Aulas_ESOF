@@ -25,9 +25,11 @@ int main(void) {
 	setlocale(LC_ALL, "");
 	
 	do {
-		printf("\n0 - Sair\n1 - Inserir no início\n2 - Inserir no fim\n3 - Inserir no meio\n4 - Inserir ordenado\n5 - Remover\n6 - Imprimir\n7 - Buscar\n");
+		printf("\n0 - Sair\n1 - Inserir no início\n2 - Inserir no fim \
+	 	\n3 - Inserir no meio\n4 - Inserir ordenado\n5 - Remover \
+	  	\n6 - Imprimir\n7 - Buscar\n\n->>>");
 		scanf("%d", &opcao);
-		
+		system("cls");
 		switch (opcao) {
 			case 1:
 				printf("Valor: ");
