@@ -85,7 +85,7 @@ int main(void) {
 
 /*** Implementação de funções <<<<- ***/
 void inserir_inicio(No **lista, int num) {
-	No *novo = malloc(sizeof(No));
+	No *novo = (No*)malloc(sizeof(No));
 
 	if (novo) {
 		novo->valor = num;
@@ -97,7 +97,7 @@ void inserir_inicio(No **lista, int num) {
 }
 
 void inserir_fim(No **lista, int num) {
-	No *aux, *novo = malloc(sizeof(No));
+	No *aux, *novo = (No*)malloc(sizeof(No));
 
 	if (novo) {
 		novo->valor = num;
@@ -119,7 +119,7 @@ void inserir_fim(No **lista, int num) {
 }
 
 void inserir_meio(No **lista, int num, int ant) {
-	No *aux, *novo = malloc(sizeof(No));
+	No *aux, *novo = (No*)malloc(sizeof(No));
 
 	if (novo) {
 		novo->valor = num;
@@ -141,7 +141,7 @@ void inserir_meio(No **lista, int num, int ant) {
 }
 
 void inserir_ordenado(No **lista, int num) {
-	No *aux, *novo = malloc(sizeof(No));
+	No *aux, *novo = (No*)malloc(sizeof(No));
 
 	if (novo) {
 		novo->valor = num;
