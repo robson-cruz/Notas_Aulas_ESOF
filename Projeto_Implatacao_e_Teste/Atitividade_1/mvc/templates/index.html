@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <table>
+        <tr>
+            <th>Tarefa</th>
+            <th> Concluída</th>
+            <th> Ações</th>
+        </tr>
+        <!-- Loop through tasks and generate rows -->
+        {% for index, task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ "Sim" if task.completed else "Não" }}</td>
+            <td>
+                <a href="{{ url_for('complete_task', index=index) }}">Marcar como Concluída</a>
+                <a href="{{ url_for('remove_task', index=index) }}">Remover</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form method="POST" action="/add">
+        <input type="text" name="new_task" placeholder="Nova Tarefa">
+        <input type="submit" value="Adicionar Tarefa">
+    </form>
+</body>
+</html>
