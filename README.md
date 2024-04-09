@@ -9,3 +9,4 @@ Repositório criado com o objetivo de abrigar meus trabalhos e exercícios de au
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/rcDeveloping/Notas_Aulas_ESOF)
 ![GitHub License](https://img.shields.io/github/license/rcDeveloping/Notas_Aulas_ESOF)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rcDeveloping/Notas_Aulas_ESOF)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr-closed/robson-cruz/Notas_Aulas_ESOF)
