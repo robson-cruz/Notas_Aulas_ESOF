@@ -1,0 +1,24 @@
+Aula 02
+- Maximinização PL Simplex. Resolução Manual.
+
+Aula 03
+- Maximinização PL Simplex. Resolução Manual e Gráfica.
+
+Aula 04
+- Maximinização PL Simplex. Resolução Manual, Gráfica (geogebra) e software VCN.
+
+Aula 05
+- Maximinização PL Simplex. Resolução Manual, Gráfica (geogebra).
+
+Aula 06
+- Minimização PL Simplex. Resolução Gráfica (geogebra) e usando o solver do excel.
+
+Aula 07 
+- Maximinização PL Simplex, exemplo usando o solver do excel. Restrição: Variáveis inteiras
+- Maximinização PL Simplex, exemplo usando o solver do excel. Restrição: Variáveis binárias
+
+Aula 08
+- Teoria dos jogos
+
+Aula 09
+
