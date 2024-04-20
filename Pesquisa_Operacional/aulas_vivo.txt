@@ -1,5 +1,5 @@
 Aula 02
-- Maximinização PL Simplex. Resolução Manual.
+- Maximinização e Minimização PL Simplex. Resolução Manual.
 
 Aula 03
 - Maximinização PL Simplex. Resolução Manual e Gráfica.
