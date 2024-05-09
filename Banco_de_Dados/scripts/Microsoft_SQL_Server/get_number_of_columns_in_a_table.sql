@@ -1,0 +1,5 @@
+USE ContosoRetailDW;
+
+SELECT COUNT(*) AS No_of_Columns
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'DimProduct';
