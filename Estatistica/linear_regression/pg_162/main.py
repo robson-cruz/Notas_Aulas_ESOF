@@ -29,6 +29,7 @@ linear_reg_data = pd.DataFrame({
 
 print(linear_reg_data)
 
+
 # Predict the infant mortality rate
 def predict_data(x):
     return linear_reg_data['slope'] * x + linear_reg_data['intercept']
