@@ -85,3 +85,6 @@ replay_pid*
 
 # Jupyter notebook
 .ipynb_checkpoints
+
+#MySQL
+.run/
