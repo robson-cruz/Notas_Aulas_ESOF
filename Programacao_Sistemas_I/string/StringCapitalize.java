@@ -1,4 +1,7 @@
 public class StringCapitalize {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         String myStr = "hello";
 
