@@ -90,3 +90,7 @@ replay_pid*
 
 #MySQL
 .run/
+
+#Replit
+.cache/
+.replit
