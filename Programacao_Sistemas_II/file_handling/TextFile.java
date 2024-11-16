@@ -13,10 +13,11 @@ public class TextFile {
 	 */
 	public static String readerFile(String path) {
         StringBuilder fileContent = new StringBuilder(); // Use StringBuilder to accumulate the file content
+		Scanner txtReader = null;
 
         try {
             File myFile = new File(path);
-            Scanner txtReader = new Scanner(myFile);
+            txtReader = new Scanner(myFile);
 
             while (txtReader.hasNextLine()) {
                 // Append each line with a newline
