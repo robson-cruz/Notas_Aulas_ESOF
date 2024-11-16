@@ -1,0 +1,11 @@
+id,id_resp,nome,peso,raca,especie,cor,sexo,data_nasc
+1,1,Rex,20.50,Labrador,Cachorro,Amarelo,Macho,2018-01-01
+2,2,Mimi,4.20,Persa,Gato,Branco,Fêmea,2020-03-15
+3,3,Bobby,10.00,Beagle,Cachorro,Marrom,Macho,2019-05-20
+4,4,Nina,3.80,Siames,Gato,Cinza,Fêmea,2021-07-25
+5,5,Luna,8.50,Poodle,Cachorro,Preto,Fêmea,2017-11-11
+6,6,Thor,12.30,Bulldog,Cachorro,Branco,Macho,2020-02-10
+7,7,Bella,5.70,Chihuahua,Cachorro,Marrom,Fêmea,2019-08-18
+8,8,Max,9.40,"Golden Retriever",Cachorro,Dourado,Macho,2018-04-21
+9,9,Simba,6.10,"Maine Coon",Gato,Cinza,Macho,2020-12-05
+10,10,Lola,3.30,Yorkshire,Cachorro,Preto,Fêmea,2017-09-30

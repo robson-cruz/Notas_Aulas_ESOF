@@ -6,30 +6,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TextFile {
+public class CsvFile {
 	/**
 	 * @param path
 	 * @return
 	 */
 	public static String readerFile(String path) {
         StringBuilder fileContent = new StringBuilder(); // Use StringBuilder to accumulate the file content
-		Scanner txtReader = null;
+
+		Scanner csvReader = null;
 
         try {
             File myFile = new File(path);
-            txtReader = new Scanner(myFile);
+            csvReader = new Scanner(myFile);
 
-            while (txtReader.hasNextLine()) {
+            while (csvReader.hasNextLine()) {
                 // Append each line with a newline
-                fileContent.append(txtReader.nextLine()).append("\n");
+                fileContent.append(csvReader.nextLine()).append("\n");
             }
         } catch (FileNotFoundException e) {
             System.out.println("Erro ao ler arquivo!");
             e.printStackTrace();
 
         } finally {
-            if (txtReader != null) {
-                txtReader.close();
+            if (csvReader != null) {
+                csvReader.close();
             }
         }
         return fileContent.toString();
