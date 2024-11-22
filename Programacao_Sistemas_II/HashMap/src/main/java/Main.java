@@ -9,7 +9,7 @@ public class Main {
     exameScores.put("Administração de Conflito", 8.0);
 
     System.out.println("Programação de Sistemas II: " + exameScores.get("Programação de Sistemas II") + "\n");
-    System.out.println(exameScores.toString() + "\n");
+    System.out.println(exameScores.toString());
 
     exameScores.forEach((key, value) -> {
       if (value == 10) {
