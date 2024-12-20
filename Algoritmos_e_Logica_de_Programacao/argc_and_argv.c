@@ -8,7 +8,7 @@ the program.
 **argv: an array of strings containing the actual arguments. 
 ***/
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv[]) {
 	
 	int j, k;
 
