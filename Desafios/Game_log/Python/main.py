@@ -1,4 +1,4 @@
-from random import randint
+from random import sample
 
 
 def secret_generator():
@@ -7,16 +7,8 @@ def secret_generator():
     Return:
         -- A String representing the 4-digits secret code with unique digits.
     """
-    digits_set = set()
-    while len(digits_set) < 4:
-        digits_set.add(randint(0, 9))
 
-    secret_code = ""
-
-    for i in digits_set:
-        secret_code += str(i)
-
-    return secret_code
+    return ''.join(map(str, sample(range(10), 4)))
 
 
 def count_bulls(secret_code, user_guess):
@@ -28,14 +20,10 @@ def count_bulls(secret_code, user_guess):
         secret_code -- String with 4-digits generate by the secret_generator() function.
         user_guess -- String representing the user's guess.
 
-    Return values: int bulls representing the numbers of Bulls.
+    Return values: an int representing the numbers of Bulls.
     """
-    bulls = 0
-    for i in range(0, len(user_guess)):
-        for j in range(0, len(secret_code)):
-            if user_guess[i] == secret_code[j] and i == j:
-                bulls += 1
-    return bulls
+
+    return sum(1 for i in range(len(secret_code)) if secret_code[i] == user_guess[i])
 
 
 def count_cows(secret_code, user_guess):
@@ -47,57 +35,45 @@ def count_cows(secret_code, user_guess):
         secret_code -- String with 4-digits generate by the secret_generator() function.
         user_guess -- String representing the user's guess.
 
-    Return values: int cows representing the numbers of Cows.
+    Return values: an int representing the numbers of Cows.
     """
-    cows = 0
-    for i in range(0, len(user_guess)):
-        for j in range(0, len(secret_code)):
-            if user_guess[i] == secret_code[j] and i != j:
-                cows += 1
 
-    return cows
+    return sum(1 for i in range(len(secret_code)) if user_guess[i] in secret_code and user_guess[i] != secret_code[i])
 
 
 def check_bulls_and_cows(bulls, cows, secret_code):
-    """Return the grade"""
-    is_secret_code_revealed = False
-
+    """Generates feedback based on Bulls and Cows counts."""
     if bulls == 4:
-        string_output = f"Grade: {bulls} bulls.\nCongrats! The secret code is {secret_code}"
-        is_secret_code_revealed = True
-        return string_output, is_secret_code_revealed
-    elif bulls == 1 and cows == 0:
-        string_output = f"Grade: {bulls} bull."
-        return string_output, is_secret_code_revealed
-    elif bulls == 0 and cows == 1:
-        string_output = f"Grade: {cows} cow."
-        return string_output, is_secret_code_revealed
-    elif bulls == 0 and cows == 0:
-        string_output = "Grade: None."
-        return string_output, is_secret_code_revealed
-    elif bulls > cows:
-        string_output = f"Grade: {bulls} bulls."
-        return string_output, is_secret_code_revealed
-    elif bulls == cows:
-        string_output = f"grade: {bulls} bulls and {cows} cow."
-        return string_output, is_secret_code_revealed
-    else:
-        string_output = f"Grade: {cows} cows."
-        return string_output, is_secret_code_revealed
+        return f"Grade: {bulls} bulls.\nCongrats! The secret code is {secret_code}", True
+
+    grade = []
+
+    if bulls > 0:
+        grade.append(f"{bulls} bull{'s' if bulls > 1 else ''}")
+    if cows > 0:
+        grade.append(f"{cows} cow{'s' if cows > 1 else ''}")
+
+    return f"Grade: {' and '.join(grade) or 'None'}.", False
 
 
 def start_game():
+    """Main game loop."""
     attempts = 1
     secret_code = secret_generator()
     print("The secret code is prepared: ****.")
 
     is_secret_code_revealed = False
     while not is_secret_code_revealed:
-        user_guess = input(f"Turn {attempts}. Answer:\n")
+        while True:
+            user_guess = input(f"Turn {attempts}. Answer:\n")
+            if user_guess.isdigit() and len(user_guess) == 4 and len(set(user_guess)) == 4:
+                break
+            print("Invalid input. Enter 4 unique digits.")
+
         bulls = count_bulls(secret_code, user_guess)
         cows = count_cows(secret_code, user_guess)
-        print(check_bulls_and_cows(bulls, cows, secret_code)[0])
-        is_secret_code_revealed = check_bulls_and_cows(bulls, cows, secret_code)[1]
+        feedback, is_secret_code_revealed = check_bulls_and_cows(bulls, cows, secret_code)
+        print(feedback)
         attempts += 1
 
 
