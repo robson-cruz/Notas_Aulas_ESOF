@@ -5,6 +5,7 @@ public class Carro extends Veiculo {
 	private int numeroDePortas;
 
 	Carro(String marca, String modelo, String cor, int ano, int numeroDePortas) {
+		// Invoca os atributos do construtor da classe Veiculo
 		super(marca, modelo, cor, ano);
 
 		this.numeroDePortas = numeroDePortas;
