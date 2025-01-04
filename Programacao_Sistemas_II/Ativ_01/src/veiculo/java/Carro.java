@@ -17,8 +17,9 @@ public class Carro extends Veiculo {
 	@Override
 	public void exibirDetalhes() {
 		System.out.println("Veículo: Carro");
+		// Chama o método exibirDetalhes() a partir da classe Veiculo
 		super.exibirDetalhes();
-		// Polimorfismo no exibirDetalhes()
+		// Polimorfismo no método exibirDetalhes()
 		System.out.println("Número de portas: " + getNumeroDePortas());
 		System.out.println();
 	}
