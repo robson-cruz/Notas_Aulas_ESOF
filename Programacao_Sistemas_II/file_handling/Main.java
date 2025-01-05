@@ -3,7 +3,7 @@ package file_handling;
 public class Main {
 
 	public static void main(String[] args) {
-		//String filePath = "customers.txt";
+		//String filePath = "pets.csv";
 		String filePath = "pets.csv";
        
 		//String data = TextFile.readerFile(filePath);
