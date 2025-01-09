@@ -20,26 +20,41 @@ def organize_files(directory=None):
     # get the contents of the directory
     list_of_files = os.listdir(directory)
 
-    # Split file and its extension and make a dictionary where the directory is the key and the extension is the value
+    # Filter files and skip directories
     file_dictionary = {
-        os.path.splitext(i)[0]: os.path.splitext(i)[1].replace('.', '') for i in list_of_files if not os.path.isdir(i)
+        file: os.path.splitext(file)[1].lstrip(".")
+        for file in list_of_files
+        if os.path.isfile(os.path.join(directory, file))
     }
 
-    # Create a directory for each file extension  and Move each file to its respective directory
+    # Create a directory for each file extension and move files
     for file, ext in file_dictionary.items():
+        if not ext:  # Skip files without extension
+            continue
+
+        # Create the subdirectory for the extension if it doesn't exist
+        new_folder = os.path.join(directory, ext)
         try:
-            os.mkdir(f"{directory}/{ext}")
+            os.mkdir(new_folder)
         except FileExistsError:
             pass
-        os.rename(f"{directory}/{file}.{ext}", f"{directory}/{ext}/{file}.{ext}")
 
-    # Summary file data
+        # Move the file to the corresponding subdirectory
+        source = os.path.join(directory, file)
+        dest = os.path.join(new_folder, file)
+        try:
+            os.rename(source, dest)
+        except FileExistsError:
+            print(f"File '{file}' already exists in '{new_folder}'. Skipping.")
+
+    # Generate summary data
     summary_data = {}
-    for file, ext in file_dictionary.items():
-        if ext:
+    for ext in file_dictionary.values():
+        if ext:  # Count only files with extensions
             summary_data[ext] = summary_data.get(ext, 0) + 1
 
-    print(json.dumps(summary_data, indent=4))
+    # Print summary as JSON
+    print(json.dumps(summary_data, indent=4, sort_keys=True))
 
 
 if __name__ == "__main__":
