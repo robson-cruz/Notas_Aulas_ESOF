@@ -21,10 +21,10 @@ class InstagramAccount(Account):
     def __init__(self, username, n_followers, n_following):
         """The initializer for the class InstagramAccount
 
-                Arguments:
-                    username -- a string inherited from Account class representing the user's name
-                    n_followers -- an int inherited from Account class representing the number of followers
-                    n_following -- an int representing the users that the user is following
-                """
+        Arguments:
+            username -- a string inherited from Account class representing the user's name
+            n_followers -- an int inherited from Account class representing the number of followers
+            n_following -- an int representing the users that the user is following
+        """
         super().__init__("Instagram", username, n_followers)  # Media is fixed to "Instagram"
         self.n_following = n_following
