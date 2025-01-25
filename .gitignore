@@ -126,6 +126,7 @@ bin/
 
 # FLASK
 .venv/
+.venv
 
 *.pyc
 __pycache__/
