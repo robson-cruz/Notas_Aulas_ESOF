@@ -36,4 +36,5 @@ class Car(db.Model):
     modelo = db.Column(db.String(50), nullable=False)
     combustivel = db.Column(db.String(50), nullable=False)
     cor = db.Column(db.String(50), nullable=False)
+    portas = db.Column(db.Integer, nullable=False)
     ano = db.Column(db.Integer, nullable=False)
