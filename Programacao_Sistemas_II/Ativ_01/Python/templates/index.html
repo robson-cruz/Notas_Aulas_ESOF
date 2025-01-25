@@ -8,8 +8,6 @@
 
 {% block main %}
   {% if current_user.is_authenticated %}
-    <h1>Welcome {{ current_user.user }}</h1>
-  {% else %}
-    <a href="{{ url_for('login') }}">Login</a>
+    <h1>Bem vindo</h1>
   {% endif %}
 {% endblock %}
