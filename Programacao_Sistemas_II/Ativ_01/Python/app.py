@@ -133,7 +133,6 @@ def logout():
     return redirect(url_for("home", title="Home"))
 
 
-# TODO: Certificar se está somente acessível a usuário logado
 @app.route("/cadastrar-moto", methods=["GET", "POST"])
 @login_required
 def create_motorcycle():
@@ -241,7 +240,11 @@ def delete_car(car_id):
 # Handling the 404 Page Not Found
 @app.errorhandler(404)
 def handle_404_error(e):
-    return render_template("404.html"), 404
+    return render_template("404.html", e=e), 404
+
+
+# Register the functions to handle HTTP errors
+app.register_error_handler(404, handle_404_error)
 
 
 # TODO: Build the page template to Handling the 500 Internal Server Error
