@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Length, Regexp, Email, InputRequire
 
 
 class UserForm(FlaskForm):
-    """Userform class to representing a form to register new users i the database"""
+    """UserForm class to representing a form to register new users i the database"""
     name = StringField("Nome", validators=[
         DataRequired(),
         Length(3, 100, message="Please provide a valid name"),
@@ -18,7 +18,7 @@ class UserForm(FlaskForm):
     ])
     email = EmailField("Email", validators=[DataRequired(), Email(), Length(1, 64)])
     password = PasswordField("Senha", validators=[DataRequired(), Length(8, 300)])
-    button = SubmitField("Cadastar Usuário")
+    button = SubmitField("Cadastrar Usuário")
 
 
 class LoginForm(FlaskForm):
@@ -40,7 +40,12 @@ class MotorcycleForm(FlaskForm):
 class CarForm(FlaskForm):
     marca = StringField("Marca", validators=[DataRequired()])
     modelo = StringField("Modelo", validators=[DataRequired()])
-    combustivel = SelectField("Combustivel", validators=[DataRequired()], choices=["Gasolina", "Diesel", "Álcool", "Flex"])
+    combustivel = SelectField(
+        "Combustivel",
+        validators=[DataRequired()],
+        choices=["Gasolina", "Diesel", "Álcool", "Flex"]
+    )
     cor = StringField("Cor", validators=[DataRequired()])
+    portas = IntegerField("Portas", validators=[DataRequired(), NumberRange(2, 4)])
     ano = IntegerField("Ano", validators=[DataRequired(), NumberRange(4)])
     button = SubmitField("Cadastrar Carro")

@@ -11,13 +11,15 @@
 <body>
 <main class="container-fluid">
     <div class="container mt-5">
-        <h3 class="text-center"><strong class="text-danger">403</strong>. Página não encontrada.</h3>
-        <h6 class="text-center">A página URL/PageNtFound não existe.</h6>
-        <p>{ e }</p>
+        <h3 class="text-center"><strong class="text-danger">404</strong>. Página não encontrada.</h3>
+        <h6 class="text-center">A URL requisitada não existe.</h6>
+        <blockquote class="blockquote text-center">
+            <p>{{ e }}</p>
+        </blockquote>
     </div>
     <div class="container text-center">
         <figure class="figure">
-            <img src="{{ url_for('static', filename='404_smaller.png') }}" class="img-thumbnail mx-auto"
+            <img src="{{ url_for('static', filename='images/404_smaller.png') }}" class="img-thumbnail mx-auto"
                  alt="403 forbidden content">
         </figure>
     </div>
