@@ -46,5 +46,6 @@ class CarForm(FlaskForm):
         choices=["Gasolina", "Diesel", "Álcool", "Flex"]
     )
     cor = StringField("Cor", validators=[DataRequired()])
+    portas = IntegerField("Portas", validators=[DataRequired(), NumberRange(2, 4)])
     ano = IntegerField("Ano", validators=[DataRequired(), NumberRange(4)])
     button = SubmitField("Cadastrar Carro")
