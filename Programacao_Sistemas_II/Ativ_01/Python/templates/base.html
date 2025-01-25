@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descrição do seu site aqui">
+    <meta name="author" content="Seu Nome">
+    <title>{% block title %} {{ title }} {% endblock %}</title>
+    <script src="https://kit.fontawesome.com/f0b959e138.js" crossorigin="anonymous"></script>
+    {{ bootstrap.load_css() }}  <!-- Load Bootstrap resources -->
+</head>
+<body>
+    {% block header %}
+    {% endblock %}
+
+    <!-- Mensagens de Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="container mt-3">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block main %}
+    {% endblock %}
+
+{% include 'footer.html' %}
+
+{% block scripts %}
+    {{ bootstrap.load_js() }}
+{% endblock %}
+</body>
+</html>

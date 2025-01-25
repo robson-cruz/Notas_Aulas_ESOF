@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descrição do seu site aqui">
+    <meta name="author" content="Seu Nome">
+    <title>404 Page Not Found</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+<main class="container-fluid">
+    <div class="container mt-5">
+        <h3 class="text-center"><strong class="text-danger">403</strong>. Página não encontrada.</h3>
+        <h6 class="text-center">A página URL/PageNtFound não existe.</h6>
+        <p>{ e }</p>
+    </div>
+    <div class="container text-center">
+        <figure class="figure">
+            <img src="{{ url_for('static', filename='404_smaller.png') }}" class="img-thumbnail mx-auto"
+                 alt="403 forbidden content">
+        </figure>
+    </div>
+
+    <div class="container text-center">
+        <a href="{{ url_for('home') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="#118B50" class="bi bi-house-check-fill" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                <path d="m8 3.293 4.712 4.712A4.5 4.5 0 0 0 8.758 15H3.5A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.707l.547.547 1.17-1.951a.5.5 0 1 1 .858.514"/>
+            </svg>
+        </a>
+    </div>
+    <div class="container text-center">
+        <a class="link-underline-light" href="{{ url_for('home') }}">Home</a>
+    </div>
+</main>
+
+{{ bootstrap.load_js() }}
+</body>
+</html>
