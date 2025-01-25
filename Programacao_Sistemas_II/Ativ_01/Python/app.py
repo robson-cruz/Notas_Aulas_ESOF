@@ -151,16 +151,17 @@ def create_motorcycle():
             db.session.add(new_motorcycle)
             db.session.commit()
             flash("Moto cadastrada com sucesso!", "success")
-            return redirect(url_for('create_motorcycle', title="Cadastrar Moto"))
+            return redirect(url_for('create_motorcycle'))
         except Exception as e:
             db.session.rollback()
             logging.error(f"Erro ao cadastrar moto: {e}")
             flash("Erro ao cadastrar moto. Por favor, tente novamente.", "danger")
-            return redirect(url_for('create_motorcycle', title="Cadastrar Moto"))
+            return redirect(url_for('create_motorcycle'))
     return render_template("create.html",
                            title="Cadastrar Moto",
                            btn_name="Cadastrar Moto",
                            form=form,
+                           url="create_motorcycle",
                            current_user=current_user)
 
 
@@ -220,6 +221,7 @@ def create_car():
                            title="Cadastrar Carro",
                            btn_name="Cadastrar Carro",
                            form=form,
+                           url="create_car",
                            current_user=current_user)
 
 
