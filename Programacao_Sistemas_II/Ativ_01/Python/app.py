@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from models.forms import UserForm, LoginForm, CarForm, MotorcycleForm
 from models.db_model import db, User, Motorcycle, Car
 
+
 app = Flask(__name__)
 Bootstrap5(app)  # Add Bootstrap resources to the app
 load_dotenv()  # Load environment variables from .env
@@ -44,7 +45,15 @@ with app.app_context():
 
 @app.route("/")
 def home():
-    return render_template("index.html", title="Home", current_user=current_user)
+    motos = db.session.query(Motorcycle).all()
+    cars = db.session.query(Car).all()
+
+    return render_template(
+        "index.html",
+        title="Home",
+        current_user=current_user,
+        tables=[motos, cars]
+    )
 
 
 # Register new users into the User database
@@ -117,7 +126,7 @@ def login():
             login_user(user)
             flash("Login realizado com sucesso!", "success")
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home', title="Home"))
+            return redirect(next_page) if next_page else redirect(url_for('home'))
 
     return render_template("login.html",
                            title="Login",
@@ -185,9 +194,8 @@ def update_moto(moto_id):
             db.session.rollback()
             logging.error(f"Erro ao atualizar moto (ID {moto_id}): {e}")
             flash("Erro ao atualizar moto. Por favor, tente novamente.", "danger")
-        # return redirect(url_for("home"))
     return render_template(
-        "update.html",
+        "update_moto.html",
         form=form,
         title="Atualizar Moto",
         moto=moto
@@ -212,6 +220,7 @@ def create_car():
             modelo=form.modelo.data,
             combustivel=form.combustivel.data,
             cor=form.cor.data,
+            portas=form.portas.data,
             ano=form.ano.data
         )
         try:
@@ -234,10 +243,34 @@ def create_car():
 
 
 # TODO: update car
-@app.route("/atualizar-carro")
+@app.route("/atualizar-carro/<int:car_id>", methods=["GET", "POST"])
 @login_required
-def update_car():
-    pass
+def update_car(car_id):
+    car = db.session.get(Car, car_id)
+    if not car:
+        flash("Carro não encontrado", "danger")
+        return redirect(url_for("home"))
+
+    form = CarForm(obj=car)
+    form.button.label = "Atualizar Carro"
+
+    if form.validate_on_submit():
+        form.populate_obj(obj=car)
+        try:
+            db.session.commit()
+            flash("Carro atualizada com sucesso!", "success")
+            return redirect(url_for("home"))
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Erro ao atualizar carro (ID {car_id}): {e}")
+            flash("Erro ao atualizar moto. Por favor, tente novamente.", "danger")
+
+    return render_template(
+        "update_car.html",
+        form=form,
+        title="Atualizar Carro",
+        car=car
+    )
 
 
 # TODO: delete car

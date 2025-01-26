@@ -6,18 +6,19 @@
     <meta name="description" content="Descrição do seu site aqui">
     <meta name="author" content="Seu Nome">
     <title>{% block title %} {{ title }} {% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="/images/flask-64.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/images/flask-16.png') }}">
     <script src="https://kit.fontawesome.com/f0b959e138.js" crossorigin="anonymous"></script>
     {{ bootstrap.load_css() }}  <!-- Load Bootstrap resources -->
 </head>
-<body>
+<body class="m-0 h-100">
     {% include 'header.html' %}
 
     {% block main %}
     <!-- Mensagens de Flash -->
-    <div class="container">
-        <div class="container mt-3">
-            <div class="row text-center">
+    <div class="wrapper d-flex flex-column">
+        <div class="content d-flex">
+            <div class="container mt-5">
                 <!-- Flash Messages -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -36,6 +37,7 @@
     </div>
     {% endblock %}
 
+<!-- Bootstrap JavaScript -->
 {% include 'footer.html' %}
 {{ bootstrap.load_js() }}
 

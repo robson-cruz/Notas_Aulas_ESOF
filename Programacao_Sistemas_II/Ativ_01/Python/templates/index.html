@@ -7,7 +7,114 @@
 {% endblock %}
 
 {% block main %}
-  {% if current_user.is_authenticated %}
-    <h1>Bem vindo</h1>
-  {% endif %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Atividade 01 - Estruturas de Classes</h1>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button
+                class="nav-link active"
+                id="motos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#motos"
+                type="button"
+                role="tab"
+                aria-controls="motos"
+                aria-selected="true">
+                Tabela de Motos
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button
+                class="nav-link"
+                id="carros-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#carros"
+                type="button"
+                role="tab"
+                aria-controls="carros"
+                aria-selected="false">
+                Tabela de Carros
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="myTabContent">
+        <!-- Tabela de Motos -->
+        <div
+            class="tab-pane fade show active"
+            id="motos"
+            role="tabpanel"
+            aria-labelledby="motos-tab">
+            <div class="mt-4">
+                <h2 class="text-center">Tabela de Motos</h2>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Combustível</th>
+                            <th>Cor</th>
+                            <th>Ano</th>
+                            <th>Side Car</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for moto in tables[0] %}
+                        <tr>
+                            <td>{{ moto.motorcycle_id }}</td>
+                            <td>{{ moto.marca }}</td>
+                            <td>{{ moto.modelo }}</td>
+                            <td>{{ moto.combustivel }}</td>
+                            <td>{{ moto.cor }}</td>
+                            <td>{{ moto.ano }}</td>
+                            <td>{{ 'Sim' if moto.side_car else 'Não' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tabela de Carros -->
+        <div
+            class="tab-pane fade"
+            id="carros"
+            role="tabpanel"
+            aria-labelledby="carros-tab">
+            <div class="mt-4">
+                <h2 class="text-center">Tabela de Carros</h2>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Combustível</th>
+                            <th>Cor</th>
+                            <th>Ano</th>
+                            <th>Portas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for carro in tables[1] %}
+                        <tr>
+                            <td>{{ carro.car_id }}</td>
+                            <td>{{ carro.marca }}</td>
+                            <td>{{ carro.modelo }}</td>
+                            <td>{{ carro.combustivel }}</td>
+                            <td>{{ carro.cor }}</td>
+                            <td>{{ carro.ano }}</td>
+                            <td>{{ carro.portas }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
