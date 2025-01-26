@@ -172,18 +172,26 @@ def update_moto(moto_id):
     if not moto:
         flash("Moto não encontrada.", "danger")
         return redirect(url_for("home"))
-    form = MotorcycleForm(obj=moto)
+
+    form = MotorcycleForm(obj=moto)  # Fill the form with the current motorcycle data
+    form.button.label.text = "Atualizar Moto"  # Updates the label of the button
     if form.validate_on_submit():
-        form.populate_obj(moto)
+        form.populate_obj(obj=moto)  # Updates the moto object with the form data
         try:
             db.session.commit()
             flash("Moto atualizada com sucesso!", "success")
+            return redirect(url_for("home"))
         except Exception as e:
             db.session.rollback()
-            logging.error(f"Erro ao atualizar moto: {e}")
+            logging.error(f"Erro ao atualizar moto (ID {moto_id}): {e}")
             flash("Erro ao atualizar moto. Por favor, tente novamente.", "danger")
-        return redirect(url_for("home"))
-    return render_template("create.html", form=form, title="Atualizar Moto")
+        # return redirect(url_for("home"))
+    return render_template(
+        "update.html",
+        form=form,
+        title="Atualizar Moto",
+        moto=moto
+    )
 
 
 # TODO: delete moto
