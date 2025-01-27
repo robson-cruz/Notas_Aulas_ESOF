@@ -1,7 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-
-db = SQLAlchemy()  # Import the db as an instance of SQLAlchemy
+from config import db
 
 
 class User(UserMixin, db.Model):
