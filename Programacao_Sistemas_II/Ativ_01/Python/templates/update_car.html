@@ -1,0 +1,39 @@
+{% extends "base_crud.html" %}
+
+{% block form %}
+    <form class="d-flex flex-column align-items-center" method="POST" action="{{ url_for('update_car', car_id=car.car_id) }}">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="{{ form.marca.id }}">{{ form.marca.label }}</label>
+            {{ form.marca(class='form-control') }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.modelo.id }}">{{ form.modelo.label }}</label>
+            {{ form.modelo(class='form-control') }}
+        </div>
+
+         <div class="form-group">
+            <label for="{{ form.ano.id }}">{{ form.combustivel.label }}</label>
+            {{ form.combustivel(class='form-control') }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.ano.id }}">{{ form.cor.label }}</label>
+            {{ form.cor(class='form-control') }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.ano.id }}">{{ form.combustivel.label }}</label>
+            {{ form.combustivel(class='form-control') }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.ano.id }}">{{ form.portas.label }}</label>
+            {{ form.portas(class='form-control') }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Atualizar Carro</button>
+    </form>
+{% endblock %}
