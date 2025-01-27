@@ -171,14 +171,25 @@ def update_moto(moto_id):
     )
 
 
-# TODO: delete moto
-@app.route("/deletar-moto")
+@app.route("/deletar-moto/<int:moto_id>", methods=["GET", "POST"])
 @login_required
-def delete_moto(car_id):
-    pass
+def delete_moto(moto_id):
+    moto = db.session.get(Motorcycle, moto_id)
+    if not moto:
+        flash("Moto não encontrada", "danger")
+        return redirect(url_for("home"))
+
+    try:
+        db.session.delete(moto)
+        db.session.commit()
+        flash("Moto excluída com sucesso", "success")
+    except Exception as e:
+        db.session.rollback()
+        logging.error(f"Erro ao excluir moto ({moto_id}): {e}")
+        flash("Erro ao excluir moto. por favor, tente novamente.", "danger")
+    return redirect(url_for("home"))
 
 
-# TODO: add car
 @app.route("/cadastrar-carro", methods=["GET", "POST"])
 @login_required
 def create_car():
