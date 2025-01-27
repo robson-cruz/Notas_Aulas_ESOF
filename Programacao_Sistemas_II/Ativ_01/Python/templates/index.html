@@ -71,7 +71,7 @@
                             <td>{{ moto.combustivel }}</td>
                             <td>{{ moto.cor }}</td>
                             <td>{{ moto.ano }}</td>
-                            <td>{{ 'Sim' if moto.side_car else 'Não' }}</td>
+                            <td>{{ 'Sim' if moto.side_car == '1' else 'Não' }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
