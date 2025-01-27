@@ -1,0 +1,9 @@
+{% extends "base_crud.html" %}
+
+{% block form %}
+    <form class="d-flex flex-column align-items-center" method="POST" action="{{ url_for('update_moto', moto_id=moto.motorcycle_id) }}">
+        {{ form.hidden_tag() }}
+        {{ render_form(form) }}
+        <!--<button type="submit" class="btn btn-primary">{{ btn_name }}</button>-->
+    </form>
+{% endblock %}
