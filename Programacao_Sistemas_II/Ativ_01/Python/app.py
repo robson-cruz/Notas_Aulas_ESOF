@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from models.forms import UserForm, LoginForm, CarForm, MotorcycleForm
-from config import app, db, login_manager
+from config import app, db, login_manager, admin_only
 from models.models import User, Motorcycle, Car
 
 
@@ -27,6 +27,7 @@ def home():
 
 # Register new users into the User database
 @app.route("/cadastrar-usuario", methods=["GET", "POST"])
+@admin_only
 def sign_up():
     form = UserForm()
     if form.validate_on_submit():
@@ -172,22 +173,28 @@ def update_moto(moto_id):
 
 
 @app.route("/deletar-moto/<int:moto_id>", methods=["GET", "POST"])
-@login_required
+@admin_only
 def delete_moto(moto_id):
     moto = db.session.get(Motorcycle, moto_id)
     if not moto:
         flash("Moto não encontrada", "danger")
         return redirect(url_for("home"))
 
-    try:
-        db.session.delete(moto)
-        db.session.commit()
-        flash("Moto excluída com sucesso", "success")
-    except Exception as e:
-        db.session.rollback()
-        logging.error(f"Erro ao excluir moto ({moto_id}): {e}")
-        flash("Erro ao excluir moto. por favor, tente novamente.", "danger")
-    return redirect(url_for("home"))
+    if request.method == "POST":
+        try:
+            db.session.delete(moto)
+            db.session.commit()
+            flash("Moto excluída com sucesso", "success")
+            return redirect(url_for("home"))
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Erro ao excluir moto ({moto_id}): {e}")
+            flash("Erro ao excluir moto. por favor, tente novamente.", "danger")
+    return render_template(
+        "delete_moto.html",
+        title="Atualizar Moto",
+        moto_id=moto.motorcycle_id
+    )
 
 
 @app.route("/cadastrar-carro", methods=["GET", "POST"])
@@ -222,7 +229,6 @@ def create_car():
                            current_user=current_user)
 
 
-# TODO: update car
 @app.route("/atualizar-carro/<int:car_id>", methods=["GET", "POST"])
 @login_required
 def update_car(car_id):
