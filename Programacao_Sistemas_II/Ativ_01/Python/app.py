@@ -259,11 +259,25 @@ def update_car(car_id):
     )
 
 
-# TODO: delete car
-@app.route("/deletar-carro")
-@login_required
+@app.route("/deletar-carro/<int:car_id>", methods=["GET", "POST"])
+@admin_only
 def delete_car(car_id):
-    pass
+    car = db.session.get(Car, car_id)
+    if not car:
+        flash("Carro não encontrado", "danger")
+        return redirect(url_for("home"))
+
+    if request.method == "POST":
+        try:
+            db.session.delete(car)
+            db.session.commit()
+            flash("Carro excluído com sucesso", "success")
+            return redirect(url_for("home"))
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Erro ao excluir carro (id {car_id}): {e}")
+            flash("Erro ao excluir carro. Por favor, tente novamente", "danger")
+    return render_template("delete_car.html", car_id=car_id)
 
 
 # Handling the 404 Page Not Found
@@ -280,7 +294,7 @@ app.register_error_handler(404, handle_404_error)
 @app.errorhandler(500)
 def internal_server_error(e):
     # note that we set the 500 status explicitly
-    return render_template('500.html'), 500
+    return render_template('500.html', e=e), 500
 
 
 if __name__ == "__main__":
