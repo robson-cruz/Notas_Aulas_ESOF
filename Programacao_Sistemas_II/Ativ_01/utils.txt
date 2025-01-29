@@ -1,0 +1,6 @@
+Database and Migrations
+The database was have configured with Flask-Migrate.
+flask db init
+flask db migrate -m "Mensagem do commit"
+flask db upgrade
+

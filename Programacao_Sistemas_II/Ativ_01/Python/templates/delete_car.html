@@ -1,0 +1,11 @@
+{% extends "base_crud.html" %}
+
+{% block form %}
+<form method="POST" action="{{ url_for('delete_car', car_id=car_id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}
+
