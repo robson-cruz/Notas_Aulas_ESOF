@@ -18,6 +18,7 @@ class UserForm(FlaskForm):
     ])
     email = EmailField("Email", validators=[DataRequired(), Email(), Length(1, 64)])
     password = PasswordField("Senha", validators=[DataRequired(), Length(8, 300)])
+    role = SelectField("Role", choices=['admin', 'user'])
     button = SubmitField("Cadastrar Usuário")
 
 
