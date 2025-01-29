@@ -1,5 +1,5 @@
 import os
-import json
+from tabulate import tabulate
 
 
 def organize_files(directory=None):
@@ -53,8 +53,9 @@ def organize_files(directory=None):
         if ext:  # Count only files with extensions
             summary_data[ext] = summary_data.get(ext, 0) + 1
 
-    # Print summary as JSON
-    print(json.dumps(summary_data, indent=4, sort_keys=True))
+    # Print summary
+    table = [[key, value] for key, value in summary_data.items()]
+    print(tabulate(table, headers=["File", "Number"], tablefmt="presto"))
 
 
 if __name__ == "__main__":
