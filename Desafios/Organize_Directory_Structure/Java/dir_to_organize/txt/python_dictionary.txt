@@ -1,0 +1,5 @@
+Any datatype can be a value in a python dictionary.
+There is no restriction on the datatype of values in a dictionary. Any valid Python object, including lists, dictionaries, sets, or even custom objects, can be used as a value.
+
+Since Python 3.7, dictionaries preserve the insertion order.
+Starting with Python 3.7, dictionaries officially guarantee that the order of items is preserved based on the order of insertion.
